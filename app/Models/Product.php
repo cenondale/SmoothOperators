@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'price',
+        'stock_quantity',
+        'image',
+        'created_at',
+    ];
+
+    public $timestamps = false;
 }
