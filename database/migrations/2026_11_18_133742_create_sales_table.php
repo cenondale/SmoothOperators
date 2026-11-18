@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-        });
+            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->nullOnDelete();
+            $table->foreignId('sold_by')->constrained('users');
+            $table->integer('quantity');
+            $table->decimal('total_price', 10, 2);
+            $table->dateTime('created_at');
+    });
     }
 
     /**
