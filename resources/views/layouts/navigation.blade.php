@@ -15,6 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Route::has('customers.index'))
+                        <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.*')">
+                            Customers
+                        </x-nav-link>
+                    @endif
+                    @if (Route::has('products.index'))
+                        <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                            Products
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -23,7 +33,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->full_name ?? Auth::user()->name ?? Auth::user()->username }}</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -70,13 +80,23 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Route::has('customers.index'))
+                <x-responsive-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.*')">
+                    Customers
+                </x-responsive-nav-link>
+            @endif
+            @if (Route::has('products.index'))
+                <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                    Products
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->full_name ?? Auth::user()->name ?? Auth::user()->username }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email ?? Auth::user()->username }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
