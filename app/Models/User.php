@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,11 @@ class User extends Authenticatable
      * The project schema stores only created_at for users.
      */
     public const UPDATED_AT = null;
+
+    public function sales(): HasMany
+    {
+        return $this->hasMany(Sale::class, 'sold_by');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
