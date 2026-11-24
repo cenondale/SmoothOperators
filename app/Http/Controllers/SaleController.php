@@ -27,7 +27,8 @@ class SaleController extends Controller
     public function create(): View
     {
         return view('sales.create', [
-            'products' => Product::where('stock_quantity', '>', 0)
+            'products' => Product::where('is_active', true)
+                ->where('stock_quantity', '>', 0)
                 ->orderBy('name')
                 ->get(),
 
@@ -41,7 +42,8 @@ class SaleController extends Controller
             'product_id' => [
                 'required',
                 'integer',
-                Rule::exists('products', 'id'),
+                Rule::exists('products', 'id')
+                    ->where(fn ($query) => $query->where('is_active', true)),
             ],
             'customer_id' => [
                 'nullable',
