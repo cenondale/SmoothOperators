@@ -1,69 +1,11 @@
+<style>
+.pos-dashboard{min-height:calc(100vh - 9rem);background:#f1f5f9}.pos-wrap{max-width:80rem;margin:0 auto;padding:2rem 1rem}.pos-hero{position:relative;overflow:hidden;border-radius:1rem;padding:2rem;color:#fff;background:linear-gradient(110deg,#4f46e5,#7c3aed 55%,#c026d3);box-shadow:0 12px 28px rgba(79,70,229,.22)}.pos-hero h1{margin:.45rem 0 0;font-size:2rem;line-height:1.2;font-weight:700}.pos-hero p{color:#e0e7ff}.pos-hero .eyebrow{color:#c7d2fe;font-size:.875rem;font-weight:600}.pos-hero-link{display:inline-block;margin-top:1.25rem;border-radius:.5rem;padding:.65rem 1rem;background:#fff;color:#4338ca;font-size:.875rem;font-weight:700;text-decoration:none}.pos-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;margin-top:2rem}.pos-card{display:block;min-height:10rem;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;background:#fff;box-shadow:0 2px 5px rgba(15,23,42,.05);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s}.pos-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(15,23,42,.1);border-color:#a5b4fc}.pos-icon{width:2.75rem;height:2.75rem;display:flex;align-items:center;justify-content:center;border-radius:.75rem;background:#eef2ff;color:#4f46e5;font-size:1.25rem;font-weight:700}.pos-card h3{margin:1rem 0 0;color:#0f172a;font-weight:700}.pos-card p{margin:.5rem 0 0;color:#64748b;font-size:.875rem;line-height:1.5}.pos-link{display:inline-block;margin-top:1rem;color:#4f46e5;font-size:.875rem;font-weight:700}@media(max-width:900px){.pos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.pos-grid{grid-template-columns:1fr}.pos-hero h1{font-size:1.6rem}}
+</style>
+
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800">
-            Dashboard
-        </h2>
-    </x-slot>
-
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="rounded-lg bg-white p-6 shadow">
-            <h3 class="text-lg font-semibold text-gray-900">
-                Welcome, {{ Auth::user()->full_name ?? Auth::user()->name ?? Auth::user()->username }}!
-            </h3>
-
-            <p class="mt-2 text-sm text-gray-600">
-                Choose an area to manage.
-            </p>
-        </div>
-
-        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            @if (Route::has('customers.index'))
-                <a href="{{ route('customers.index') }}"
-                   class="block rounded-lg bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-md">
-                    <h3 class="font-semibold text-gray-900">
-                        Customers
-                    </h3>
-
-                    <p class="mt-2 text-sm text-gray-600">
-                        View, add, and update customer records.
-                    </p>
-                </a>
-            @endif
-
-            @if (Route::has('products.index'))
-                <a href="{{ route('products.index') }}"
-                   class="block rounded-lg bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-md">
-                    <h3 class="font-semibold text-gray-900">
-                        Products
-                    </h3>
-
-                    <p class="mt-2 text-sm text-gray-600">
-                        View products and available stock.
-                    </p>
-                </a>
-            @endif
-
-            <a href="{{ route('sales.create') }}"
-               class="block rounded-lg bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-md">
-                <h3 class="font-semibold text-gray-900">
-                    Record Sale
-                </h3>
-
-                <p class="mt-2 text-sm text-gray-600">
-                    Sell a product and update its stock.
-                </p>
-            </a>
-
-            <a href="{{ route('sales.index') }}"
-               class="block rounded-lg bg-white p-6 shadow transition hover:-translate-y-1 hover:shadow-md">
-                <h3 class="font-semibold text-gray-900">
-                    Sales History
-                </h3>
-
-                <p class="mt-2 text-sm text-gray-600">
-                    Review past transactions.
-                </p>
-            </a>
-        </div>
-    </div>
+<x-slot name="header"><div class="flex items-center justify-between gap-4"><div><p class="text-sm font-semibold text-indigo-600">Smooth Operators POS</p><h2 class="mt-1 text-2xl font-bold tracking-tight text-slate-900">Dashboard</h2></div><span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">Management Center</span></div></x-slot>
+<div class="pos-dashboard"><div class="pos-wrap"><section class="pos-hero"><div class="eyebrow">Good to see you again</div><h1>Welcome, {{ Auth::user()->full_name ?? Auth::user()->name ?? Auth::user()->username }}!</h1><p>Manage your products, customers, and sales from one simple workspace.</p><a href="{{ route('sales.create') }}" class="pos-hero-link">Record a sale &rarr;</a></section><div class="pos-grid">
+@if(Route::has('customers.index'))<a href="{{ route('customers.index') }}" class="pos-card"><div class="pos-icon">C</div><h3>Customers</h3><p>View and update customer records.</p><span class="pos-link">Open &rarr;</span></a>@endif
+@if(Route::has('products.index'))<a href="{{ route('products.index') }}" class="pos-card"><div class="pos-icon">P</div><h3>Products</h3><p>Manage products and stock levels.</p><span class="pos-link">Open &rarr;</span></a>@endif
+<a href="{{ route('sales.create') }}" class="pos-card"><div class="pos-icon">+</div><h3>Record Sale</h3><p>Create a sale and update stock.</p><span class="pos-link">Start &rarr;</span></a><a href="{{ route('sales.index') }}" class="pos-card"><div class="pos-icon">S</div><h3>Sales History</h3><p>Review your past transactions.</p><span class="pos-link">View &rarr;</span></a></div></div></div>
 </x-app-layout>
