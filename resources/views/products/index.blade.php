@@ -36,10 +36,13 @@
                         <tr class="border-t">
                             <td class="px-6 py-4">
                                 @if ($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}"
+                                    <img src="{{ Storage::disk('public')->url($product->image) }}"
+                                         alt="{{ $product->name }}"
                                          class="h-12 w-12 rounded object-cover">
                                 @else
-                                    <span class="text-gray-400">No image</span>
+                                    <div class="flex h-12 w-12 items-center justify-center rounded bg-gray-200 text-center text-xs text-gray-500">
+                                        No image
+                                    </div>
                                 @endif
                             </td>
 
