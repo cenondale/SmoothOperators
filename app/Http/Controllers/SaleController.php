@@ -27,10 +27,9 @@ class SaleController extends Controller
     public function create(): View
     {
         return view('sales.create', [
-            'products' => Product::where('is_active', true)
-                ->where('stock_quantity', '>', 0)
-                ->orderBy('name')
-                ->get(),
+            'products' => Product::where('stock_quantity', '>', 0)
+            ->orderBy('name')
+            ->get(),
             'customers' => Customer::orderBy('full_name')->get(),
         ]);
     }
