@@ -25,6 +25,12 @@
                             Products
                         </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('sales.create')" :active="request()->routeIs('sales.create')">
+                        Record Sale
+                    </x-nav-link>
+                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')">
+                        Sales History
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -90,6 +96,12 @@
                     Products
                 </x-responsive-nav-link>
             @endif
+            <x-responsive-nav-link :href="route('sales.create')" :active="request()->routeIs('sales.create')">
+                Record Sale
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')">
+                Sales History
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

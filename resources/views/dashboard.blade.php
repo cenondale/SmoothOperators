@@ -22,6 +22,14 @@
                     <p class="mt-2 text-sm text-gray-600">View products and available stock.</p>
                 </a>
             @endif
+            <a href="{{ route('sales.create') }}" class="rounded-lg bg-white p-6 shadow transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <h3 class="font-semibold text-gray-900">Record Sale</h3>
+                <p class="mt-2 text-sm text-gray-600">Sell a product and update its stock.</p>
+            </a>
+            <a href="{{ route('sales.index') }}" class="rounded-lg bg-white p-6 shadow transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <h3 class="font-semibold text-gray-900">Sales History</h3>
+                <p class="mt-2 text-sm text-gray-600">Review past transactions.</p>
+            </a>
         </div>
     </div>
 </x-app-layout>
