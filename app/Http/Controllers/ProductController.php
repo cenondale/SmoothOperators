@@ -10,11 +10,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('is_active', true)
-            ->latest('created_at')
-            ->get();
+    $products = Product::latest('created_at')->get();
 
-        return view('products.index', compact('products'));
+    return view('products.index', compact('products'));
     }
 
     public function create()
