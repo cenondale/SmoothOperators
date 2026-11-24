@@ -4,6 +4,7 @@
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-nav-link>
             @if (Route::has('customers.index'))<x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.*')">Customers</x-nav-link>@endif
             @if (Route::has('products.index'))<x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">Products</x-nav-link>@endif
+            @if (Route::has('staff.index'))<x-nav-link :href="route('staff.index')" :active="request()->routeIs('staff.*')">Staff</x-nav-link>@endif
             <x-nav-link :href="route('sales.create')" :active="request()->routeIs('sales.create')">Record Sale</x-nav-link>
             <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')">Sales History</x-nav-link>
         </div></div>
