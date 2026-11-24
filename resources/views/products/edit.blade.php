@@ -57,8 +57,16 @@
                     <div class="mb-4">
                         <p class="mb-2 font-medium">Current Image</p>
 
-                        <img src="{{ asset('storage/' . $product->image) }}"
+                        <img src="{{ Storage::disk('public')->url($product->image) }}"
+                             alt="{{ $product->name }}"
                              class="h-32 w-32 rounded object-cover">
+                    </div>
+                @else
+                    <div class="mb-4">
+                        <p class="mb-2 font-medium">Current Image</p>
+                        <div class="flex h-32 w-32 items-center justify-center rounded bg-gray-200 text-center text-sm text-gray-500">
+                            No image
+                        </div>
                     </div>
                 @endif
 

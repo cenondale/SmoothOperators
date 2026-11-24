@@ -19,13 +19,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
         'username',
         'full_name',
         'password',
         'avatar',
+        'created_at',
     ];
+
+    /**
+     * The project schema stores only created_at for users.
+     */
+    public const UPDATED_AT = null;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,8 +49,8 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'created_at' => 'datetime',
         ];
     }
 }
